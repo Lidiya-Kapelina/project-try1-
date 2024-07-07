@@ -17,13 +17,13 @@ class ProfileViewController: UIViewController,UITextFieldDelegate{
             super.viewDidLoad()
             view.addSubview(label)
             
-            // Устанавливаем делегаты для текстовых полей
+ 
             name.delegate = self
             dateOfBirth.delegate = self
             weight.delegate = self
             contactData.delegate = self
 
-            // Выводим в text field значения из словаря
+        
             updateTextFields()
         }
 
@@ -35,19 +35,18 @@ class ProfileViewController: UIViewController,UITextFieldDelegate{
         }
 
         func textFieldDidChangeSelection(_ textField: UITextField) {
-            // Получаем словарь из UserDefaults
+         
             var dict = UserDefaults.standard.dictionary(forKey: globalLogin) ?? [:]
 
-            // Обновляем значения в словаре на основе текстовых полей
+      
             dict["contactData"] = contactData.text
             dict["name"] = name.text
             dict["weight"] = weight.text
             dict["dateOfBirth"] = dateOfBirth.text
 
-            // Сохраняем обновленный словарь в UserDefaults
+  
             UserDefaults.standard.setValue(dict, forKey: globalLogin)
 
-            // Обновляем текст в текстовых полях
             updateTextFields()
         }
     }
